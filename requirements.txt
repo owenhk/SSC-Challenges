@@ -1,5 +1,6 @@
 fastapi~=0.115.11
 aiohttp~=3.11.13
+uvicorn
 asyncpg~=0.30.0
 dotenv~=0.9.9
 python-dotenv~=1.0.1
