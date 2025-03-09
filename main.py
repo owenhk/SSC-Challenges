@@ -50,7 +50,7 @@ async def upload_fact(request: Request):
         result = await connection.execute("""
         SELECT * FROM facts WHERE fact = $1
         """, fact)
-        result = result.fetchone()
+        result = result.fetchrow()
         if result is None:
             raise fastapi.HTTPException(status_code=404, detail="Fact not found. Are you sure you sent the case sensitive fact?")
         security_code_test = result[2]
