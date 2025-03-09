@@ -47,10 +47,9 @@ async def upload_fact(request: Request):
     security_code = request.headers.get("Authorization")
     # Check if the security code is valid
     async with pool.acquire() as connection:
-        result = await connection.execute("""
+        result = await connection.fetchrow("""
         SELECT * FROM facts WHERE fact = $1
         """, fact)
-        result = result.fetchrow()
         if result is None:
             raise fastapi.HTTPException(status_code=404, detail="Fact not found. Are you sure you sent the case sensitive fact?")
         security_code_test = result[2]
